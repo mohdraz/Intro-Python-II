@@ -1,4 +1,5 @@
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -49,3 +50,71 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+playerName = input('Enter your name to get started: ')
+player = Player(playerName, room['outside'])
+# player.cr_room = player.cr_room.s_to
+
+print(
+    f"=======================Welcome {player.name}===========================")
+print(
+    f"you are currently in Room {player.cr_room.name} \nwhich is {player.cr_room.description} ")
+
+print(f"========Directions to move: n = North, s = South, e = East, w = West \n========enter q to quite the game")
+
+
+direction = ''
+
+
+def chooseDirction():
+    global direction
+    direction = input('Choose a direction to move: n, s, e, w: ')
+
+
+chooseDirction()
+
+while True:
+
+    if direction == 'n':
+        if player.cr_room.n_to is not None:
+            player.cr_room = player.cr_room.n_to
+            print(player.cr_room)
+            chooseDirction()
+        else:
+            print('no room found in this direction, try again')
+            chooseDirction()
+
+    elif direction == 's':
+        if player.cr_room.s_to is not None:
+            player.cr_room = player.cr_room.s_to
+            print(player.cr_room)
+            chooseDirction()
+        else:
+            print('no room found in this direction, try again')
+            chooseDirction()
+
+    elif direction == 'e':
+        if player.cr_room.e_to is not None:
+            player.cr_room = player.cr_room.e_to
+            print(player.cr_room)
+            chooseDirction()
+        else:
+            print('no room found in this direction, try again')
+            chooseDirction()
+
+    elif direction == 'w':
+        if player.cr_room.w_to is not None:
+            player.cr_room = player.cr_room.w_to
+            print(player.cr_room)
+            chooseDirction()
+        else:
+            print('no room found in this direction, try again')
+            chooseDirction()
+
+    elif direction == 'q':
+        print('Thank you for playing game with us')
+        break
+
+    else:
+        print('You have chosen unavailable direction')
+        chooseDirction()
