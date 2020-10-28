@@ -16,7 +16,6 @@ class Room:
         i = 0
         for item in self.list:
             output += " " + str(i+1) + ". " + item + "\n"
-        # Add line below
         return output
 
     def __str__(self):
